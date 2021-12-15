@@ -1,0 +1,411 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  --background: #151A24;
+  --light-blue: #1F2433;
+  --title-active: #797C86;
+  --title-inactive: #797c8680;
+  --text: #C9CBCF;
+  --red: #FF0046;
+  --green: #00CCAA;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+input[type="checkbox"] {
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+div.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 2rem;
+  background-color: var(--background);
+}
+
+header.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(120rem, 100%);
+  background-color: var(--light-blue);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  padding: 3rem 0.5rem 3.4rem;
+}
+
+h1.logo {
+  color: var(--title-active);
+  font-size: 3.2rem;
+  line-height: 0;
+}
+
+div.container {
+  width: min(120rem, 100%);
+  height: 100%;
+  background-color: var(--light-blue);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+div.container header.container-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.container header.container-menu h2 {
+  color: var(--title-active);
+  font-size: 2.4rem;
+  line-height: 0;
+}
+
+div.container header.container-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0.3rem solid var(--title-inactive);
+  border-radius: 50%;
+  color: var(--title-inactive);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 0;
+  padding-right: .05rem;
+  padding-bottom: .1rem;
+  transition-property: color, border-color;
+  transition-duration: .3s;
+}
+
+div.container header.container-menu a:hover {
+  border-color: var(--title-active);
+  color: var(--title-active);
+}
+
+header.task-list-header {
+  display: grid;
+  grid-template-columns: 1fr 9rem;
+  grid-gap: 1rem;
+  margin: 2rem 0;
+}
+
+header.task-list-header h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 4rem;
+  border: 0.2rem solid var(--text);
+  border-radius: 1rem;
+  color: var(--text);
+}
+
+section.task-list-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+  overflow-y: auto;
+}
+
+
+section.task-list-body div.task-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 9rem;
+  grid-gap: 1rem;
+  opacity: 0.5;
+  transition-duration: .3s;
+  transition-property: opacity;
+}
+
+section.task-list-body div.task-wrapper:hover {
+  opacity: 1;
+}
+
+section.task-list-body div.task-wrapper:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+section.task-list-body div.task-wrapper div.action-btns {
+  display: grid;
+  grid-template-columns: 4rem 4rem;
+  grid-gap: 1rem;
+}
+
+section.task-list-body div.task-wrapper p {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 4rem;
+  border: 0.2rem solid var(--text);
+  border-radius: 1rem;
+  color: var(--text);
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  transition-property: color, border;
+  transition-duration: 0.4s;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+section.task-list-body div.task-wrapper div.action-btns a.delete,
+section.task-list-body div.task-wrapper div.action-btns label.todo-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  height: 4rem;
+  border: 0.2rem solid var(--text);
+  border-radius: 1rem;
+  color: var(--text);
+  transition: 0.4s ease;
+}
+
+section.task-list-body div.task-wrapper div.action-btns a.delete {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+section.task-list-body div.task-wrapper div.action-btns label.todo-check div.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: 0.4s ease;
+  padding: 0.4rem;
+}
+
+section.task-list-body div.task-wrapper div.action-btns label.todo-check div.check svg {
+  fill: var(--light-blue);
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+section.task-list-body div.task-wrapper div.action-btns label.todo-check {
+  padding: 0.4rem;
+}
+
+section.task-list-body div.task-wrapper.checked {
+  opacity: 1;
+}
+
+section.task-list-body div.task-wrapper.checked p {
+  border: 0.2rem solid var(--green);
+  color: var(--green);
+}
+
+section.task-list-body div.task-wrapper.checked div.action-btns label.todo-check {
+  border: 0.2rem solid var(--green);
+  color: var(--green);
+}
+
+section.task-list-body div.task-wrapper.checked div.action-btns label.todo-check div.check svg {
+  opacity: 1;
+}
+
+section.task-list-body div.task-wrapper.checked div.action-btns label.todo-check div.check {
+  width: 100%;
+  height: 100%;
+  background-color: var(--green);
+  border-radius: 0.5rem;
+}
+
+section.task-list-body div.task-wrapper div.action-btns a.delete {
+  border: 0.2rem solid var(--red);
+  padding: 0.4rem;
+}
+
+section.task-list-body div.task-wrapper div.action-btns a.delete div.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  color: var(--red);
+  transition: 0.4s ease;
+}
+
+section.task-list-body div.task-wrapper div.action-btns a.delete:hover div.box {
+  background-color: var(--red);
+  width: 100%;
+  height: 100%;
+  border-radius: 0.4rem;
+  color: var(--light-blue);
+  padding: 0.4rem;
+}
+
+div.modal.hide {
+  display: none;
+}
+
+div.modal {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+div.modal div.overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(0.15rem);
+}
+
+div.modal div.modal-form {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(40rem, 100%);
+  background-color: var(--light-blue);
+  border-radius: 1rem;
+  padding: 3rem 2rem 2rem;
+}
+
+div.modal div.modal-form form.task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+div.modal div.modal-form div.input-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.modal div.modal-form div.input-container label.task-label {
+  color: var(--text);
+  font-size: 1.8rem;
+}
+
+div.modal div.modal-form div.input-container input.task-input {
+  width: 100%;
+  background-color: transparent;
+  border: 0.4rem solid var(--title-inactive);
+  border-radius: 0.5rem;
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0 4rem;
+  transition: 0.3s ease;
+}
+
+div.modal div.modal-form div.input-container input.task-input.invalid {
+  border: 0.4rem solid var(--red);
+}
+
+div.modal div.modal-form div.input-container input.task-input:focus {
+  border: 0.4rem solid var(--title-active);
+}
+
+div.modal div.modal-form div.buttons-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+div.modal div.modal-form div.buttons-container button.modal-btn {
+  width: 100%;
+  height: 4rem;
+  background-color: transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+div.modal div.modal-form div.buttons-container button.modal-btn:first-child {
+  border: 0.4rem solid var(--red);
+  color: var(--red);
+  margin-right: 2rem;
+}
+
+div.modal div.modal-form div.buttons-container button.modal-btn:first-child:hover {
+  background-color: var(--red);
+  border: 0.4rem solid var(--red);
+  color: var(--light-blue);
+  margin-right: 2rem;
+}
+
+div.modal div.modal-form div.buttons-container button.modal-btn:last-child {
+  border: 0.4rem solid var(--green);
+  color: var(--green);
+}
+
+div.modal div.modal-form div.buttons-container button.modal-btn:last-child:hover {
+  background-color: var(--green);
+  border: 0.4rem solid var(--green);
+  color: var(--light-blue);
+}
+
+div.app footer.footer {
+  display: flex;
+  width: min(120rem, 100%);
+  background-color: var(--light-blue);
+  border-radius: 0.8rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+div.app footer.footer a.social img {
+  width: 4rem;
+}
+
+div.app footer.footer a.social:not(:last-child) {
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  div.app {
+    padding: 2rem 1rem;
+  }
+
+  div.modal {
+    padding: 2rem 1rem;
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./src/assets/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To do list | plan.it</title>
+  <meta name="author" content="Nicolas A. Feitoza">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="theme-color" content="#151A24">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app" data-js="app">
+    <header class="page-header" data-js="page-header">
+      <h1 class="logo" alt="Plan.it logo">plan.it</h1>
+    </header>
+    <div class="container" data-js="container">
+      <header class="container-menu" data-js="container-menu" title="Tasks">
+        <h2>Tasks</h2>
+        <a href="/" class="add-task" data-js="add-task" title="Add new task">+</a>
+      </header>
+      <main class="task-container" data-js="task-container">
+        <header class="task-list-header">
+          <h2>Description</h2>
+          <h2>Actions</h2>
+        </header>
+        <section class="task-list-body" data-js="task-list-body"></section>
+      </main>
+    </div>
+    <div class="modal hide" data-js="modal">
+      <div class="modal-form">
+        <h1 class="logo" alt="Plan.it logo">plan.it</h1>
+        <form class="task-form" data-js="task-form">
+          <div class="input-container">
+            <label for="task-input" class="task-label">Task</label>
+            <input type="text" class="task-input" id="task-input" data-js="task-input" placeholder="Write an article"
+              autocomplete="off">
+          </div>
+          <div class="buttons-container">
+            <button class="modal-btn" data-js="cancel-btn">Cancel</button>
+            <button type="submit" class="modal-btn" data-js="add-btn">Add</button>
+          </div>
+        </form>
+      </div>
+      <div class="overlay" data-js="teste"></div>
+    </div>
+    <footer class="footer">
+      <a href="https://github.com/afx-nicolas" target="_blank" rel="noopener" class="social">
+        <img src="./src/assets/github.svg" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/nicolas-amaro-feitoza/" target="_blank" rel="noopener" class="social">
+        <img src="./src/assets/linkedin.svg" alt="LinkedIn">
+      </a>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
